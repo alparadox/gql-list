@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {TestQueryGQL} from "../../../generated/graphql";
 
 @Component({
   selector: 'app-list',
@@ -8,9 +9,17 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private media: TestQueryGQL
+  ) { }
 
   ngOnInit(): void {
+    this.media.fetch({id: 15125}, {
+      fetchPolicy: 'network-only'
+    })
+      .subscribe(data => {
+        console.log(data)
+      });
   }
 
 }
