@@ -14,19 +14,20 @@ input:not(:checked) + .text:before {
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border: 3px solid $accent-grey;
-  background-color: #ffffff;
-  border-radius: 100%;
+  border-radius: 2px;
 }
 
 input:not(:checked) + .text:before {
   border: 2px solid $accent-grey;
+  background-color: #ffffff;
 }
 
 input:checked + .text:before {
   border: 2px solid $accent-blue;
+  background-color: $accent-blue;
 }
 
 input:checked,
@@ -39,8 +40,8 @@ input:checked + .text,
 input:not(:checked) + .text {
   display: inline-block;
   position: relative;
-  padding-left: 47px;
-  padding-bottom: 15px;
+  padding-left: 31px;
+  padding-bottom: 16px;
   line-height: 20px;
   cursor: pointer;
 }
@@ -53,12 +54,18 @@ input:not(:checked) + .text:after {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  left: 5px;
-  top: 5px;
-  width: 10px;
-  height: 10px;
-  border-radius: 100%;
-  background-color: $accent-blue;
+  left: 3px;
+  top: 3px;
+  width: 11px;
+  height: 6px;
+  border-radius: 1px;
+  border-left: 2px solid #FFFFFF;
+  border-bottom: 2px solid #FFFFFF;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 input:not(:checked) + .text:after {
