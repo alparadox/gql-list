@@ -8,8 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "gql:update-schema": "graphql get-schema -e default",
-    "gql:codegen": "graphql-codegen --config codegen.yml",
-    "gql::codegen": "graphql-codegen --config codegen.yml"
+    "gql:codegen": "graphql-codegen --config codegen.yml"
   },
   "private": true,
   "dependencies": {

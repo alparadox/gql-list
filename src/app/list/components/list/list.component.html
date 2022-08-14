@@ -1,0 +1,8 @@
+<ng-container *ngIf="pageInfo?.currentPage">
+  <p>list works!</p>
+  <button type="button" (click)="loadAnotherPage('back')" [disabled]="pageInfo.currentPage === 1">Назад</button>
+  <p> {{pageInfo.currentPage}}</p>
+  <button type="button" (click)="loadAnotherPage('next')" [disabled]="!pageInfo.hasNextPage">Вперед</button>
+  <app-filter></app-filter>
+</ng-container>
+

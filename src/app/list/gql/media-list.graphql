@@ -1,0 +1,38 @@
+query mediaList ($id: Int, $page: Int, $perPage: Int, $search: String) { # Define which variables will be used in the query (id)
+  Page (page: $page, perPage: $perPage) {
+    pageInfo {
+      currentPage
+      total
+      hasNextPage
+    }
+    media (id: $id, search: $search) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
+      ...MediaListFragment
+    }
+  }
+}
+
+fragment MediaListFragment on Media {
+  id
+  episodes
+  title {
+    english
+  }
+}
+
+#fragment MediaFragment on Media {
+#  id
+#  title {
+#    english
+#  }
+#  episodes
+#  studios {
+#    edges {
+#      node {
+#        id
+#        name
+#      }
+#    }
+#  }
+#  chapters
+#  isAdult
+#}

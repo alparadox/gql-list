@@ -4669,31 +4669,47 @@ export type YearStats = {
   year?: Maybe<Scalars['Int']>;
 };
 
-export type TestQueryQueryVariables = Exact<{
+export type MediaListQueryVariables = Exact<{
   id?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  perPage?: InputMaybe<Scalars['Int']>;
+  search?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type TestQueryQuery = { __typename?: 'Query', Media?: { __typename?: 'Media', id: number, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null, native?: string | null } | null } | null };
+export type MediaListQuery = { __typename?: 'Query', Page?: { __typename?: 'Page', pageInfo?: { __typename?: 'PageInfo', currentPage?: number | null, total?: number | null, hasNextPage?: boolean | null } | null, media?: Array<{ __typename?: 'Media', id: number, episodes?: number | null, title?: { __typename?: 'MediaTitle', english?: string | null } | null } | null> | null } | null };
 
-export const TestQueryDocument = gql`
-    query testQuery($id: Int) {
-  Media(id: $id, type: ANIME) {
-    id
-    title {
-      romaji
-      english
-      native
-    }
+export type MediaListFragmentFragment = { __typename?: 'Media', id: number, episodes?: number | null, title?: { __typename?: 'MediaTitle', english?: string | null } | null };
+
+export const MediaListFragmentFragmentDoc = gql`
+    fragment MediaListFragment on Media {
+  id
+  episodes
+  title {
+    english
   }
 }
     `;
+export const MediaListDocument = gql`
+    query mediaList($id: Int, $page: Int, $perPage: Int, $search: String) {
+  Page(page: $page, perPage: $perPage) {
+    pageInfo {
+      currentPage
+      total
+      hasNextPage
+    }
+    media(id: $id, search: $search) {
+      ...MediaListFragment
+    }
+  }
+}
+    ${MediaListFragmentFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
   })
-  export class TestQueryGQL extends Apollo.Query<TestQueryQuery, TestQueryQueryVariables> {
-    document = TestQueryDocument;
+  export class MediaListGQL extends Apollo.Query<MediaListQuery, MediaListQueryVariables> {
+    document = MediaListDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
