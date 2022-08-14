@@ -4,5 +4,9 @@
   <div class="search">
     <app-input [control]="searchTerm"></app-input>
   </div>
+  <div>
+    <app-radio [control]="type" [value]="MediaType.Anime">ANIME</app-radio>
+    <app-radio [control]="type" [value]="MediaType.Manga">MANGA</app-radio>
+  </div>
 
 </form>

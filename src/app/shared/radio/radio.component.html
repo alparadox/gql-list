@@ -1,4 +1,6 @@
 <label class="label">
-  <input type="radio" name="type">
-  <span class="text">Barge</span>
+  <input type="radio" name="type" [formControl]="control" [value]="value">
+  <span class="text">
+    <ng-content></ng-content>
+  </span>
 </label>

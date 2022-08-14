@@ -71,8 +71,11 @@ export class ListComponent implements OnInit, OnDestroy {
 
     const filter = this.dataService.getFilter();
 
-    if (filter.searchTerm) {
-      queryParams.search = filter.searchTerm;
+    if (filter.search) {
+      queryParams.search = filter.search;
+    }
+    if (filter.type) {
+      queryParams.type = filter.type;
     }
 
 

@@ -1,15 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
-  Media, MediaItemGQL,
+  MediaItemGQL,
   MediaItemQuery,
-  MediaListFragmentFragment,
   MediaListGQL,
   MediaListQuery,
-  PageInfo
+  PageInfo,
+  QueryMediaArgs
 } from "../../../generated/graphql";
 import {BehaviorSubject, Observable, tap} from "rxjs";
 import {ApolloQueryResult} from "@apollo/client/core";
-import {IFilter} from "../intarfaces/filter";
 
 
 @Injectable({
@@ -22,8 +21,8 @@ export class DataService {
   private _pageInfo$: BehaviorSubject<Partial<PageInfo>> = new BehaviorSubject<Partial<PageInfo>>({});
   public pageInfo$: Observable<Partial<PageInfo>> = this._pageInfo$.asObservable();
 
-  private _filter$: BehaviorSubject<IFilter> = new BehaviorSubject<IFilter>({});
-  public filter$: Observable<IFilter> = this._filter$.asObservable();
+  private _filter$: BehaviorSubject<QueryMediaArgs> = new BehaviorSubject<QueryMediaArgs>({});
+  public filter$: Observable<QueryMediaArgs> = this._filter$.asObservable();
 
   private perPage = 5;
 
@@ -33,12 +32,13 @@ export class DataService {
   ) { }
 
 
-  public getMediaList(page: number, filter: IFilter):  Observable<ApolloQueryResult<MediaListQuery>> {
+  public getMediaList(page: number, filter: QueryMediaArgs):  Observable<ApolloQueryResult<MediaListQuery>> {
     console.log('get DATA', page, filter)
     return this.mediaListGQL.watch({
       page,
       perPage: this.perPage,
-      search: filter.searchTerm
+      search: filter.search,
+      type: filter.type
     }, {fetchPolicy: "cache-first"})
       .valueChanges
       .pipe(
@@ -60,11 +60,11 @@ export class DataService {
     return this.mediaItemGQL.watch({id}, {fetchPolicy: "cache-first"}).valueChanges
   }
 
-  public getFilter(): IFilter {
+  public getFilter(): QueryMediaArgs {
     return this._filter$.value;
   }
 
-  public setFilter(filter: IFilter): void {
+  public setFilter(filter: QueryMediaArgs): void {
     this._filter$.next(filter);
   }
 
