@@ -1,0 +1,72 @@
+$accent-black: #000000;
+$accent-blue: #347CFF;
+$accent-grey: #DADADA;
+
+.text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+input:checked + .text:before,
+input:not(:checked) + .text:before {
+  content: '';
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 16px;
+  height: 16px;
+  border: 3px solid $accent-grey;
+  background-color: #ffffff;
+  border-radius: 100%;
+}
+
+input:not(:checked) + .text:before {
+  border: 2px solid $accent-grey;
+}
+
+input:checked + .text:before {
+  border: 2px solid $accent-blue;
+}
+
+input:checked,
+input:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+input:checked + .text,
+input:not(:checked) + .text {
+  display: inline-block;
+  position: relative;
+  padding-left: 47px;
+  padding-bottom: 15px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+input:checked + .text:after,
+input:not(:checked) + .text:after {
+  content: "";
+  position: absolute;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  left: 5px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: $accent-blue;
+}
+
+input:not(:checked) + .text:after {
+  opacity: 0;
+}
+
+input:checked + .text:after {
+  opacity: 1;
+}

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputComponent } from './input/input.component';
+import { RadioComponent } from './radio/radio.component';
 
 
 
 @NgModule({
   declarations: [
-    InputComponent
+    InputComponent,
+    RadioComponent
   ],
   imports: [
     CommonModule
