@@ -4677,16 +4677,18 @@ export type MediaListQueryVariables = Exact<{
 }>;
 
 
-export type MediaListQuery = { __typename?: 'Query', Page?: { __typename?: 'Page', pageInfo?: { __typename?: 'PageInfo', currentPage?: number | null, total?: number | null, hasNextPage?: boolean | null } | null, media?: Array<{ __typename?: 'Media', id: number, episodes?: number | null, title?: { __typename?: 'MediaTitle', english?: string | null } | null } | null> | null } | null };
+export type MediaListQuery = { __typename?: 'Query', Page?: { __typename?: 'Page', pageInfo?: { __typename?: 'PageInfo', currentPage?: number | null, total?: number | null, lastPage?: number | null, hasNextPage?: boolean | null } | null, media?: Array<{ __typename?: 'Media', id: number, type?: MediaType | null, format?: MediaFormat | null, title?: { __typename?: 'MediaTitle', english?: string | null, native?: string | null } | null } | null> | null } | null };
 
-export type MediaListFragmentFragment = { __typename?: 'Media', id: number, episodes?: number | null, title?: { __typename?: 'MediaTitle', english?: string | null } | null };
+export type MediaListFragmentFragment = { __typename?: 'Media', id: number, type?: MediaType | null, format?: MediaFormat | null, title?: { __typename?: 'MediaTitle', english?: string | null, native?: string | null } | null };
 
 export const MediaListFragmentFragmentDoc = gql`
     fragment MediaListFragment on Media {
   id
-  episodes
+  type
+  format
   title {
     english
+    native
   }
 }
     `;
@@ -4696,6 +4698,7 @@ export const MediaListDocument = gql`
     pageInfo {
       currentPage
       total
+      lastPage
       hasNextPage
     }
     media(id: $id, search: $search) {

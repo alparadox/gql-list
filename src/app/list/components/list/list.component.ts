@@ -40,6 +40,8 @@ export class ListComponent implements OnInit, OnDestroy {
       )
       .subscribe(data => {
         this.pageInfo = data.data.Page?.pageInfo as PageInfo;
+        this.dataService.setPageInfo(this.pageInfo);
+
         this.data = data.data.Page?.media as Media[];
         this.cdr.detectChanges();
 

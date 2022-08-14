@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {ListComponent} from "./components/list/list.component";
 import {FilterComponent} from "./components/filter/filter.component";
 import {CardComponent} from "./components/card/card.component";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -13,7 +14,8 @@ import {CardComponent} from "./components/card/card.component";
     FilterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class ListModule { }

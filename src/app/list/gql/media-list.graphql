@@ -3,6 +3,7 @@ query mediaList ($id: Int, $page: Int, $perPage: Int, $search: String) { # Defin
     pageInfo {
       currentPage
       total
+      lastPage
       hasNextPage
     }
     media (id: $id, search: $search) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
@@ -13,9 +14,11 @@ query mediaList ($id: Int, $page: Int, $perPage: Int, $search: String) { # Defin
 
 fragment MediaListFragment on Media {
   id
-  episodes
+  type
+  format
   title {
     english
+    native
   }
 }
 

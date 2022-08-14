@@ -29,7 +29,7 @@ export class DataService {
       )
   }
 
-  public setPageInfo(pageInfo: Partial<PageInfo>): void {
+  public setPageInfo(pageInfo: PageInfo): void {
     this._pageInfo$.next(pageInfo);
   }
 

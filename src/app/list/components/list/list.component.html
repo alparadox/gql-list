@@ -1,5 +1,23 @@
+<h1>ANIME</h1>
+
 <ng-container *ngIf="pageInfo?.currentPage">
-  <p>list works!</p>
+
+  <ng-container *ngIf="data.length > 0">
+    <div *ngFor="let item of data;">
+      <h2>{{ item.title?.english ? item.title?.english : 'Native title: ' + item.title?.native }}</h2>
+      <button type="button" [routerLink]="['/item', item.id]">Посмотреть элемент</button>
+      <div>
+        <span>Type: </span>
+        <span>{{item.type}}</span>
+      </div>
+      <div>
+        <span>Format: </span>
+        <span>{{item.format}}</span>
+      </div>
+      <hr>
+    </div>
+  </ng-container>
+
   <button type="button" (click)="loadAnotherPage('back')" [disabled]="pageInfo.currentPage === 1">Назад</button>
   <p> {{pageInfo.currentPage}}</p>
   <button type="button" (click)="loadAnotherPage('next')" [disabled]="!pageInfo.hasNextPage">Вперед</button>
