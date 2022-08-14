@@ -1,1 +1,38 @@
-<p>card works!</p>
+
+<div *ngIf="item$ | async as item" class="background" [style.background-image]="'url(' + item.bannerImage +')'">
+
+  <div class="content">
+    <button type="button" (click)="goBack()">Вернуться назад</button>
+    <h1>{{ item.title?.english ? item.title?.english : 'Native title: ' + item.title?.native }}</h1>
+    <div>
+      <span>Type: </span>
+      <span>{{item.type}}</span>
+    </div>
+    <div>
+      <span>Format: </span>
+      <span>{{item.format}}</span>
+    </div>
+    <div>
+      <span>For adults: </span>
+      <span>{{getBooleanLabel(item.isAdult)}}</span>
+    </div>
+    <div>
+      <span>Episodes: </span>
+      <span>{{item.episodes}}</span>
+    </div>
+    <div>
+      <span>Status: </span>
+      <span>{{item.status}}</span>
+    </div>
+    <div>
+      <span>Description: </span>
+      <span>{{item.description}}</span>
+    </div>
+    <div>
+      <span>Banner: </span>
+      <span>{{item.bannerImage}}</span>
+    </div>
+  </div>
+
+
+</div>

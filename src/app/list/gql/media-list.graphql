@@ -21,21 +21,3 @@ fragment MediaListFragment on Media {
     native
   }
 }
-
-#fragment MediaFragment on Media {
-#  id
-#  title {
-#    english
-#  }
-#  episodes
-#  studios {
-#    edges {
-#      node {
-#        id
-#        name
-#      }
-#    }
-#  }
-#  chapters
-#  isAdult
-#}

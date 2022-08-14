@@ -4669,6 +4669,13 @@ export type YearStats = {
   year?: Maybe<Scalars['Int']>;
 };
 
+export type MediaItemQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type MediaItemQuery = { __typename?: 'Query', Media?: { __typename?: 'Media', episodes?: number | null, isAdult?: boolean | null, bannerImage?: string | null, description?: string | null, status?: MediaStatus | null, id: number, type?: MediaType | null, format?: MediaFormat | null, title?: { __typename?: 'MediaTitle', english?: string | null, native?: string | null } | null } | null };
+
 export type MediaListQueryVariables = Exact<{
   id?: InputMaybe<Scalars['Int']>;
   page?: InputMaybe<Scalars['Int']>;
@@ -4692,6 +4699,29 @@ export const MediaListFragmentFragmentDoc = gql`
   }
 }
     `;
+export const MediaItemDocument = gql`
+    query mediaItem($id: Int) {
+  Media(id: $id) {
+    ...MediaListFragment
+    episodes
+    isAdult
+    bannerImage
+    description
+    status
+  }
+}
+    ${MediaListFragmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MediaItemGQL extends Apollo.Query<MediaItemQuery, MediaItemQueryVariables> {
+    document = MediaItemDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const MediaListDocument = gql`
     query mediaList($id: Int, $page: Int, $perPage: Int, $search: String) {
   Page(page: $page, perPage: $perPage) {

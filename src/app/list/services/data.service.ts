@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import {Media, MediaListFragmentFragment, MediaListGQL, MediaListQuery, PageInfo} from "../../../generated/graphql";
+import {
+  Media, MediaItemGQL,
+  MediaItemQuery,
+  MediaListFragmentFragment,
+  MediaListGQL,
+  MediaListQuery,
+  PageInfo
+} from "../../../generated/graphql";
 import {BehaviorSubject, Observable, tap} from "rxjs";
 import {ApolloQueryResult} from "@apollo/client/core";
 
@@ -15,7 +22,8 @@ export class DataService {
   public pageInfo$: Observable<Partial<PageInfo>> = this._pageInfo$.asObservable();
 
   constructor(
-    private mediaListGQL: MediaListGQL
+    private mediaListGQL: MediaListGQL,
+    private mediaItemGQL: MediaItemGQL
   ) { }
 
 
@@ -37,5 +45,8 @@ export class DataService {
     return this._pageInfo$.value;
   }
 
+  public getMediaItem(id: number):  Observable<ApolloQueryResult<MediaItemQuery>> {
+    return this.mediaItemGQL.watch({id}, {fetchPolicy: "cache-first"}).valueChanges
+  }
 
 }
