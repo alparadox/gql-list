@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { InputComponent } from './input/input.component';
 import { RadioComponent } from './radio/radio.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -13,7 +14,8 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     CheckboxComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     InputComponent,

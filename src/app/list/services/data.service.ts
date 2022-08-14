@@ -9,6 +9,7 @@ import {
 } from "../../../generated/graphql";
 import {BehaviorSubject, Observable, tap} from "rxjs";
 import {ApolloQueryResult} from "@apollo/client/core";
+import {IFilter} from "../intarfaces/filter";
 
 
 @Injectable({
@@ -21,14 +22,24 @@ export class DataService {
   private _pageInfo$: BehaviorSubject<Partial<PageInfo>> = new BehaviorSubject<Partial<PageInfo>>({});
   public pageInfo$: Observable<Partial<PageInfo>> = this._pageInfo$.asObservable();
 
+  private _filter$: BehaviorSubject<IFilter> = new BehaviorSubject<IFilter>({});
+  public filter$: Observable<IFilter> = this._filter$.asObservable();
+
+  private perPage = 5;
+
   constructor(
     private mediaListGQL: MediaListGQL,
     private mediaItemGQL: MediaItemGQL
   ) { }
 
 
-  public getMediaList(page: number, perPage: number):  Observable<ApolloQueryResult<MediaListQuery>> {
-    return this.mediaListGQL.watch({page, perPage}, {fetchPolicy: "cache-first"})
+  public getMediaList(page: number, filter: IFilter):  Observable<ApolloQueryResult<MediaListQuery>> {
+    console.log('get DATA', page, filter)
+    return this.mediaListGQL.watch({
+      page,
+      perPage: this.perPage,
+      search: filter.searchTerm
+    }, {fetchPolicy: "cache-first"})
       .valueChanges
       .pipe(
         tap(data => {
@@ -47,6 +58,14 @@ export class DataService {
 
   public getMediaItem(id: number):  Observable<ApolloQueryResult<MediaItemQuery>> {
     return this.mediaItemGQL.watch({id}, {fetchPolicy: "cache-first"}).valueChanges
+  }
+
+  public getFilter(): IFilter {
+    return this._filter$.value;
+  }
+
+  public setFilter(filter: IFilter): void {
+    this._filter$.next(filter);
   }
 
 }

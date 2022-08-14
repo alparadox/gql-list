@@ -1,5 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy} from '@angular/core';
+import {AbstractControl, FormControl} from "@angular/forms";
+import {debounceTime, distinctUntilChanged, Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-input',
@@ -7,16 +8,22 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent implements OnInit {
+export class InputComponent implements OnInit, OnDestroy {
 
-  placeholderShow: boolean = true;
+  @Input() control!: FormControl;
 
-  input = new FormControl();
+  public placeholderShow: boolean = true;
+
+  private destroy$: Subject<void> = new Subject<void>();
 
   constructor() { }
 
   ngOnInit(): void {
-    this.input.valueChanges.subscribe(
+    this.control.valueChanges
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe(
       (value) => {
         if (value.length === 0) {
           this.placeholderShow = true;
@@ -25,6 +32,11 @@ export class InputComponent implements OnInit {
         }
       }
     )
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

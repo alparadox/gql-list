@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {EMPTY, Subject, switchMap, takeUntil} from "rxjs";
 import {DataService} from "../../services/data.service";
-import {Media, PageInfo} from "../../../../generated/graphql";
+import {Media, MediaListQueryVariables, PageInfo} from "../../../../generated/graphql";
 
 @Component({
   selector: 'app-list',
@@ -32,8 +32,8 @@ export class ListComponent implements OnInit, OnDestroy {
             this.router.navigate(['/list'], {queryParams: {page: 1}});
             return EMPTY;
           } else {
-            this.dataService.setPageInfo({currentPage: +currentPage});
-            return this.dataService.getMediaList(+currentPage, 5);
+            const filter = this.dataService.getFilter();
+            return this.dataService.getMediaList(+currentPage, filter);
           }
         }),
 
@@ -66,7 +66,17 @@ export class ListComponent implements OnInit, OnDestroy {
     } else if (step === 'back') {
       page = currentPage - 1;
     }
-    this.router.navigate(['/list'], {queryParams: {page}});
+
+    const queryParams: MediaListQueryVariables = {page};
+
+    const filter = this.dataService.getFilter();
+
+    if (filter.searchTerm) {
+      queryParams.search = filter.searchTerm;
+    }
+
+
+    this.router.navigate(['/list'], {queryParams});
 
   }
 }

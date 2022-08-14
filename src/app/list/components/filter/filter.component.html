@@ -1,1 +1,8 @@
-<p>filter works!</p>
+<button type="button" (click)="onApply()">Применить</button>
+
+<form [formGroup]="filter">
+  <div class="search">
+    <app-input [control]="searchTerm"></app-input>
+  </div>
+
+</form>

@@ -4,6 +4,8 @@ import {ListComponent} from "./components/list/list.component";
 import {FilterComponent} from "./components/filter/filter.component";
 import {CardComponent} from "./components/card/card.component";
 import {RouterModule} from "@angular/router";
+import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -15,7 +17,9 @@ import {RouterModule} from "@angular/router";
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class ListModule { }
