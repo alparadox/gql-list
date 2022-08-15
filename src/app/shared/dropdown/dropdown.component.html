@@ -1,0 +1,9 @@
+<div (click)="showDropdown = !showDropdown" class="input">
+  <p class="label">Format</p>
+  <p>Выбрано: 2</p>
+</div>
+<div *ngIf="showDropdown" class="dropdown">
+  <div *ngFor="let item of formats">
+    <app-checkbox ngDefaultControl [(ngModel)]="item.checked" (ngModelChange)="onItemChange(item)">{{item.data}}</app-checkbox>
+  </div>
+</div>

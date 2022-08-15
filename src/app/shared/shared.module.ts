@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { InputComponent } from './input/input.component';
 import { RadioComponent } from './radio/radio.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 
 
@@ -11,16 +12,19 @@ import {ReactiveFormsModule} from "@angular/forms";
   declarations: [
     InputComponent,
     RadioComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    DropdownComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
-  exports: [
-    InputComponent,
-    RadioComponent,
-    CheckboxComponent
-  ]
+    exports: [
+        InputComponent,
+        RadioComponent,
+        CheckboxComponent,
+        DropdownComponent
+    ]
 })
 export class SharedModule { }

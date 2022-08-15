@@ -1,4 +1,6 @@
 <label class="label">
-  <input type="checkbox" name="type">
-  <span class="text">Port Canaveral</span>
+  <input type="checkbox" name="type" [checked]="value" (change)="onInputValueChange()">
+  <span class="text">
+    <ng-content></ng-content>
+  </span>
 </label>

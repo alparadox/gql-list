@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {DataService} from "../../services/data.service";
-import {MediaType} from "../../../../generated/graphql";
+import {MediaFormat, MediaType} from "../../../../generated/graphql";
 
 @Component({
   selector: 'app-filter',
@@ -12,10 +12,12 @@ import {MediaType} from "../../../../generated/graphql";
 })
 export class FilterComponent implements OnInit {
 
+  formats = MediaFormat;
+
   public readonly filter = new FormGroup({
     search: new FormControl(null),
     type: new FormControl(null),
-    format: new FormControl(null),
+    format: new FormControl(['MANGA', 'MOVIE', 'ONE_SHOT']),
   });
 
   public MediaType = MediaType;
@@ -34,6 +36,7 @@ export class FilterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.filter.valueChanges.subscribe(console.log);
   }
 
   public onApply(): void {

@@ -21,3 +21,5 @@ fragment MediaListFragment on Media {
     native
   }
 }
+
+#format_in: [SPECIAL, TV]
