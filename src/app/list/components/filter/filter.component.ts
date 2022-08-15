@@ -17,7 +17,7 @@ export class FilterComponent implements OnInit {
   public readonly filter = new FormGroup({
     search: new FormControl(null),
     type: new FormControl(null),
-    format: new FormControl(['MANGA', 'MOVIE', 'ONE_SHOT']),
+    format_in: new FormControl(['MANGA', 'MOVIE', 'ONE_SHOT']),
   });
 
   public MediaType = MediaType;
@@ -28,6 +28,10 @@ export class FilterComponent implements OnInit {
 
   public get type(): FormControl {
     return this.filter.get('type') as FormControl;
+  }
+
+  public get formatIn(): FormControl {
+    return this.filter.get('format_in') as FormControl;
   }
 
   constructor(
@@ -43,6 +47,6 @@ export class FilterComponent implements OnInit {
     this.dataService.setFilter(this.filter.value);
     this.router.navigate(
       ['/list'],
-      {queryParams: {page: 1, searchTerm: this.searchTerm.value, type: this.type.value}})
+      {queryParams: {page: 1, searchTerm: this.searchTerm.value, type: this.type.value, format_in: this.formatIn.value}})
   }
 }
