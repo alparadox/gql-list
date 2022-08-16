@@ -1,0 +1,50 @@
+@import "src/assets/styles/variables";
+
+.input {
+  box-sizing: border-box;
+  padding: 13px 1px 7px 1px;
+  position: relative;
+  min-height: 53px;
+  width: 329px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  &::placeholder {
+    color: $accent-black;
+    opacity: 0.4;
+  }
+  &:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  }
+}
+
+.label {
+  position: absolute;
+  top: -14px;
+  left: -9px;
+  padding: 10px;
+  font-weight: 400;
+  transition: 0.2s;
+  pointer-events: none;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.input-text {
+  position: absolute;
+  top: 10px;
+  left: 0px;
+}
+
+.dropdown {
+  border-top: 1px solid $accent-blue;
+  width: 329px;
+  padding: 13px;
+  background: #FFFFFF;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.23), 0px 3px 6px rgba(0, 0, 0, 0.16);
+}

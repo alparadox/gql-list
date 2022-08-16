@@ -29,6 +29,7 @@
   height: 100vh;
   display: block;
   border-left: 1px solid $grey;
+  padding: 26px 31px 26px 31px;
 }
 
 .wrapper-card {
@@ -55,6 +56,13 @@
   border: none;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  &:hover {
+    padding-left: 15px;
+  }
+  &:active {
+    color: $accent-grey;
+  }
 }
 
 .icon {
@@ -68,4 +76,55 @@ hr {
 .color-text {
   color: $accent-blue;
   margin-left: 104px;
+  margin-right: 260px;
+}
+
+path {
+    fill: #347CFF;
+}
+
+.button-back {
+  background-color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    path {
+      fill: #3C474C;
+    }
+  }
+  &:active {
+    path {
+      fill: #A5A5A5;
+    }
+  }
+}
+
+.button-next {
+  background-color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transform: rotate(180deg);
+  &:hover {
+    path {
+      fill: #3C474C;
+    }
+  }
+  &:active {
+    path {
+      fill: #A5A5A5;
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  margin-top: 57px;
+}
+
+.page-number {
+  margin: 0 22px 0 22px;
 }

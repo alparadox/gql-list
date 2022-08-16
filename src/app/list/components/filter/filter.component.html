@@ -1,15 +1,19 @@
-<button type="button" (click)="onApply()">Применить</button>
-
+<p class="title">Фильтры</p>
 <form [formGroup]="filter">
   <div class="search">
     <app-input [control]="searchTerm"></app-input>
   </div>
-  <div>
-    <app-radio [control]="type" [value]="MediaType.Anime">ANIME</app-radio>
-    <app-radio [control]="type" [value]="MediaType.Manga">MANGA</app-radio>
-  </div>
-  <div>
+
+  <div class="format-wrapper">
     <app-dropdown formControlName="format_in"></app-dropdown>
   </div>
 
+  <div class="type-wrapper">
+    <p class="radio-title">Тип</p>
+    <app-radio [control]="type" [value]="MediaType.Anime">ANIME</app-radio>
+    <app-radio [control]="type" [value]="MediaType.Manga">MANGA</app-radio>
+  </div>
+
 </form>
+
+<button type="button" (click)="onApply()" class="button-result">Применить</button>

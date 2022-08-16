@@ -7,7 +7,9 @@
 
         <div class="wrapper-card">
           <p class="title-card">{{ item.title?.english ? item.title?.english : 'Native title: ' + item.title?.native }}</p>
-          <button type="button" [routerLink]="['/item', item.id]" class="button-info"><img src="./assets/icon.svg" class="icon"></button>
+          <button type="button" [routerLink]="['/item', item.id]" class="button-info">
+            <img src="./assets/icon/icon-arrow.svg" class="icon">
+          </button>
         </div>
 
         <div class="wrapper-type">
@@ -25,9 +27,19 @@
       </div>
     </ng-container>
 
-    <button type="button" (click)="loadAnotherPage('back')" [disabled]="pageInfo.currentPage === 1">Назад</button>
-    <p> {{pageInfo.currentPage}}</p>
-    <button type="button" (click)="loadAnotherPage('next')" [disabled]="!pageInfo.hasNextPage">Вперед</button>
+    <div class="pagination">
+      <button type="button" (click)="loadAnotherPage('back')" [disabled]="pageInfo.currentPage === 1" class="button-back">
+        <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.41 1.41L6 0L0 6L6 12L7.41 10.59L2.83 6L7.41 1.41Z" fill="#3C474C"/>
+        </svg>
+      </button>
+      <p class="page-number"> {{pageInfo.currentPage}}</p>
+      <button type="button" (click)="loadAnotherPage('next')" [disabled]="!pageInfo.hasNextPage" class="button-next">
+        <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.41 1.41L6 0L0 6L6 12L7.41 10.59L2.83 6L7.41 1.41Z" fill="'#3C474C'"/>
+        </svg>
+      </button>
+    </div>
   </div>
 
   <div class="wrapper-filter">
