@@ -1,6 +1,6 @@
 <div (click)="showDropdown = !showDropdown" class="input">
   <p class="label">Format</p>
-  <p class="input-text">Выбрано: 2</p>
+  <p class="input-text">Выбрано: {{count}}</p>
 </div>
 <div *ngIf="showDropdown" class="dropdown">
   <div *ngFor="let item of formats">

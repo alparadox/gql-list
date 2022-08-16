@@ -32,6 +32,10 @@ export class DropdownComponent implements ControlValueAccessor {
 
   private formatsSet = new Set();
 
+  public get count(): number {
+    return this.formatsSet.size;
+  }
+
 
   constructor() {
     for (let mediaFormatKey in MediaFormat) {
