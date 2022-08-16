@@ -15,14 +15,9 @@ import {ApolloQueryResult} from "@apollo/client/core";
   providedIn: 'root'
 })
 export class DataService {
-  private _currentMediaList$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
-  public currentMediaList$: Observable<any> = this._currentMediaList$.asObservable();
-
   private _pageInfo$: BehaviorSubject<Partial<PageInfo>> = new BehaviorSubject<Partial<PageInfo>>({});
-  public pageInfo$: Observable<Partial<PageInfo>> = this._pageInfo$.asObservable();
 
   private _filter$: BehaviorSubject<QueryMediaArgs> = new BehaviorSubject<QueryMediaArgs>({});
-  public filter$: Observable<QueryMediaArgs> = this._filter$.asObservable();
 
   private perPage = 5;
 
@@ -58,11 +53,6 @@ export class DataService {
       format_in: filter.format_in,
     }, {fetchPolicy: "cache-first"})
       .valueChanges
-      .pipe(
-        tap(data => {
-          this._currentMediaList$.next(data.data.Page?.media);
-        })
-      )
   }
 
   public setPageInfo(pageInfo: PageInfo): void {
