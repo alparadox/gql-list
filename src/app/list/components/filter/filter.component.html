@@ -1,4 +1,7 @@
 <p class="title">Фильтры</p>
+
+<button type="button" (click)="onApply()" class="button-result">Применить</button>
+
 <form [formGroup]="filter">
   <div class="search">
     <app-input ngDefaultControl formControlName="search"></app-input>
@@ -16,4 +19,4 @@
 
 </form>
 
-<button type="button" (click)="onApply()" class="button-result">Применить</button>
+
