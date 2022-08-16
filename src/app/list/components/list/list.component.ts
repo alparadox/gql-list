@@ -85,6 +85,10 @@ export class ListComponent implements OnInit, OnDestroy {
       queryParams.type = filter.type;
     }
 
+    if (filter.format_in) {
+      queryParams.format_in = filter.format_in;
+    }
+
 
     this.router.navigate(['/list'], {queryParams});
 
