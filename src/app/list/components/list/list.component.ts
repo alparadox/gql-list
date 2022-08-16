@@ -34,7 +34,6 @@ export class ListComponent implements OnInit, OnDestroy {
             return EMPTY;
           } else {
             const filter = this.dataService.getFilter();
-            console.log(filter)
             return this.dataService.getMediaList(+currentPage, filter);
           }
         }),

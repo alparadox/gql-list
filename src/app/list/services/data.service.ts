@@ -33,7 +33,6 @@ export class DataService {
 
 
   public getMediaList(page: number, filter: QueryMediaArgs):  Observable<ApolloQueryResult<MediaListQuery>> {
-    console.log('get DATA', page, filter)
     return this.mediaListGQL.watch({
       page,
       perPage: this.perPage,

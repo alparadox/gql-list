@@ -1,6 +1,7 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy} from '@angular/core';
-import {AbstractControl, FormControl} from "@angular/forms";
-import {debounceTime, distinctUntilChanged, Subject, takeUntil} from "rxjs";
+import {Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy, ChangeDetectorRef} from '@angular/core';
+import {AbstractControl, FormControl, NgControl} from "@angular/forms";
+import {debounceTime, distinctUntilChanged, startWith, Subject, takeUntil} from "rxjs";
+import {logMissingFieldErrors} from "@apollo/client/core/ObservableQuery";
 
 @Component({
   selector: 'app-input',
@@ -9,27 +10,36 @@ import {debounceTime, distinctUntilChanged, Subject, takeUntil} from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponent implements OnInit, OnDestroy {
+  public get value(): string {
+    return this.ngControl.value;
+  }
 
-  @Input() control!: FormControl;
 
   public placeholderShow: boolean = true;
 
   private destroy$: Subject<void> = new Subject<void>();
 
-  constructor() { }
+  constructor(
+    private readonly ngControl: NgControl
+  ) { }
 
   ngOnInit(): void {
-    this.control.valueChanges
+    // @ts-ignore
+
+    this.ngControl.control.valueChanges
       .pipe(
+        // @ts-ignore
+        startWith(this.ngControl.control.value),
         takeUntil(this.destroy$)
       )
-      .subscribe(
-      (value) => {
+      .subscribe((value) => {
+
         if (value.length === 0) {
           this.placeholderShow = true;
         } else {
           this.placeholderShow = false;
         }
+
       }
     )
   }

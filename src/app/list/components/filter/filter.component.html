@@ -1,7 +1,7 @@
 <p class="title">Фильтры</p>
 <form [formGroup]="filter">
   <div class="search">
-    <app-input [control]="searchTerm"></app-input>
+    <app-input ngDefaultControl formControlName="searchTerm"></app-input>
   </div>
 
   <div class="format-wrapper">

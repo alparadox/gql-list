@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../../services/data.service";
@@ -41,7 +41,6 @@ export class FilterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.filter.valueChanges.subscribe(console.log);
 
     this.route.queryParamMap.subscribe(queryParams => {
       const searchTerm = queryParams.get('searchTerm');
@@ -50,7 +49,7 @@ export class FilterComponent implements OnInit {
 
       this.filter.setValue({
         searchTerm, type, format_in
-      });
+      }, { emitEvent: true });
     });
   }
 
