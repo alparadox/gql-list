@@ -1,11 +1,71 @@
+@import "src/assets/styles/variables";
+
+:host {
+  margin: 0;
+}
+
 .wrapper {
   display: flex;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 43px;
 }
 
 .content {
-  width: 75%;
-}
+  width: 80%;
+  padding: 26px 64px 162px 63px}
 
 .filter {
-  width: 25%;
+  width: 20%;
+}
+
+.wrapper-filter {
+  height: 100vh;
+  display: block;
+  border-left: 1px solid $grey;
+}
+
+.wrapper-card {
+  display: flex;
+  margin-bottom: 9px;
+}
+
+.title-card {
+  font-size: 20px;
+}
+
+.wrapper-type {
+  display: flex;
+  margin-bottom: 33px;
+  font-weight: 400;
+  font-size: 16px;
+  &:first-child {
+    margin-right: 300px;
+  }
+}
+
+.button-info {
+  background-color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-left: 23px;
+}
+
+hr {
+  margin-bottom: 19px;
+}
+
+.color-text {
+  color: $accent-blue;
+  margin-left: 104px;
 }

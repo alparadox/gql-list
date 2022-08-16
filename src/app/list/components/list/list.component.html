@@ -1,20 +1,26 @@
-<h1>ANIME</h1>
-
 <div class="wrapper">
   <div *ngIf="pageInfo?.currentPage" class="content">
 
+    <p class="title">ANIME</p>
     <ng-container *ngIf="data.length > 0">
       <div *ngFor="let item of data;">
-        <h2>{{ item.title?.english ? item.title?.english : 'Native title: ' + item.title?.native }}</h2>
-        <button type="button" [routerLink]="['/item', item.id]">Посмотреть элемент</button>
-        <div>
-          <span>Type: </span>
-          <span>{{item.type}}</span>
+
+        <div class="wrapper-card">
+          <p class="title-card">{{ item.title?.english ? item.title?.english : 'Native title: ' + item.title?.native }}</p>
+          <button type="button" [routerLink]="['/item', item.id]" class="button-info"><img src="./assets/icon.svg" class="icon"></button>
         </div>
-        <div>
-          <span>Format: </span>
-          <span>{{item.format}}</span>
+
+        <div class="wrapper-type">
+          <div>
+            <span>Type </span>
+            <span class="color-text">{{item.type}}</span>
+          </div>
+          <div>
+            <span>Format </span>
+            <span class="color-text">{{item.format}}</span>
+          </div>
         </div>
+
         <hr>
       </div>
     </ng-container>
@@ -24,7 +30,9 @@
     <button type="button" (click)="loadAnotherPage('next')" [disabled]="!pageInfo.hasNextPage">Вперед</button>
   </div>
 
-  <app-filter class="filter"></app-filter>
+  <div class="wrapper-filter">
+    <app-filter class="filter"></app-filter>
+  </div>
 </div>
 
 
