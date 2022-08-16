@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../../services/data.service";
 import {MediaFormat, MediaType} from "../../../../generated/graphql";
 
@@ -15,7 +15,7 @@ export class FilterComponent implements OnInit {
   formats = MediaFormat;
 
   public readonly filter = new FormGroup({
-    search: new FormControl(null),
+    searchTerm: new FormControl(null),
     type: new FormControl(null),
     format_in: new FormControl(['MANGA', 'MOVIE', 'ONE_SHOT']),
   });
@@ -23,7 +23,7 @@ export class FilterComponent implements OnInit {
   public MediaType = MediaType;
 
   public get searchTerm(): FormControl {
-    return this.filter.get('search') as FormControl;
+    return this.filter.get('searchTerm') as FormControl;
   }
 
   public get type(): FormControl {
@@ -36,11 +36,22 @@ export class FilterComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private dataService: DataService
+    private dataService: DataService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     this.filter.valueChanges.subscribe(console.log);
+
+    this.route.queryParamMap.subscribe(queryParams => {
+      const searchTerm = queryParams.get('searchTerm');
+      const type = queryParams.get('type');
+      const format_in = queryParams.getAll('format_in');
+
+      this.filter.setValue({
+        searchTerm, type, format_in
+      });
+    });
   }
 
   public onApply(): void {

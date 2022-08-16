@@ -62,12 +62,12 @@ export class DropdownComponent implements ControlValueAccessor {
 
   public writeValue(value: string[]): void {
     this.value = value;
+    value.forEach(item => {
+      this.formatsSet.add(item);
+    })
+
     this.formats.forEach(format => {
       const index = value.findIndex(item => String(item) == String(format.data));
-      console.log(format.data);
-      console.log(value)
-      console.log(index)
-      console.log(value.includes(format.data))
 
       if (index !== -1) {
 

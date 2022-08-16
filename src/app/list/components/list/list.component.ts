@@ -28,11 +28,13 @@ export class ListComponent implements OnInit, OnDestroy {
         switchMap((queryParams: ParamMap) => {
           const currentPage = queryParams.get('page');
 
+
           if (!currentPage) {
             this.router.navigate(['/list'], {queryParams: {page: 1}});
             return EMPTY;
           } else {
             const filter = this.dataService.getFilter();
+            console.log(filter)
             return this.dataService.getMediaList(+currentPage, filter);
           }
         }),

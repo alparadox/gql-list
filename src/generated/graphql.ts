@@ -4682,6 +4682,7 @@ export type MediaListQueryVariables = Exact<{
   perPage?: InputMaybe<Scalars['Int']>;
   search?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<MediaType>;
+  format_in?: InputMaybe<Array<InputMaybe<MediaFormat>> | InputMaybe<MediaFormat>>;
 }>;
 
 
@@ -4724,7 +4725,7 @@ export const MediaItemDocument = gql`
     }
   }
 export const MediaListDocument = gql`
-    query mediaList($id: Int, $page: Int, $perPage: Int, $search: String, $type: MediaType) {
+    query mediaList($id: Int, $page: Int, $perPage: Int, $search: String, $type: MediaType, $format_in: [MediaFormat]) {
   Page(page: $page, perPage: $perPage) {
     pageInfo {
       currentPage
@@ -4732,7 +4733,7 @@ export const MediaListDocument = gql`
       lastPage
       hasNextPage
     }
-    media(id: $id, search: $search, type: $type) {
+    media(id: $id, search: $search, type: $type, format_in: $format_in) {
       ...MediaListFragment
     }
   }

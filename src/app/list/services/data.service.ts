@@ -37,8 +37,9 @@ export class DataService {
     return this.mediaListGQL.watch({
       page,
       perPage: this.perPage,
-      search: filter.search,
-      type: filter.type
+      // search: filter.search,
+      // type: filter.type,
+      format_in: filter.format_in,
     }, {fetchPolicy: "cache-first"})
       .valueChanges
       .pipe(
