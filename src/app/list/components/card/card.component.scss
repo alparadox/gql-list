@@ -7,7 +7,7 @@
 }
 
 .content {
-  padding: 20px;
+  padding: 27px 44px 27px 44px;
   background-color: rgba(244, 244, 244, 0.8);
   border-radius: 20px;
   font-family: 'Roboto';
@@ -15,15 +15,14 @@
   font-weight: 400;
   font-size: 16px;
   color: rgba(0, 0, 0, 0.87);
-}
-
-.color-text {
-  color: $accent-blue;
+  max-width: 793px;
 }
 
 .icon {
   transform: rotate(180deg);
-  margin-right: 23px;
+  margin-right: 3px;
+  width: 10px;
+  height: 10px;
 }
 
 .button-back {
@@ -32,10 +31,59 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: $accent-blue;
+  position: relative;
   &:hover {
-    padding-left: 15px;
+    padding-left: 19px;
+    .icon {
+      position: absolute;
+      left: -5px;
+    }
   }
   &:active {
-    color: $accent-grey;
+    color: $grey;
   }
+}
+
+.title {
+  font-weight: 500;
+  font-size: 28px;
+  color: rgba(0, 0, 0, 0.87);
+  margin-bottom: 48px;
+}
+
+.container {
+  display: flex;
+  margin-bottom: 32px;
+  font-size: 16px;
+}
+
+.container div:first-child {
+  min-width: 453px;
+}
+
+
+.color-text {
+  color: $accent-blue;
+  margin-left: 37px;
+  line-height: 32px;
+}
+
+.title-type {
+  width: 100px;
+  display: inline-block;
+}
+
+.title-description {
+  margin-bottom: 22px;
+  display: block;
+}
+
+.text-description {
+  color: $accent-blue;
+  line-height: 32px;
+}
+
+.description {
+  margin-top: 32px;
 }

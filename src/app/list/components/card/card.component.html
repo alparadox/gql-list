@@ -5,30 +5,37 @@
     <button type="button" (click)="goBack()" class="button-back">
       <img src="./assets/icon/icon-arrow.svg" class="icon">
       Вернуться</button>
-    <h1>{{ item.title?.english ? item.title?.english : 'Native title: ' + item.title?.native }}</h1>
-    <div>
-      <span>Type: </span>
-      <span class="color-text">{{item.type}}</span>
+    <h1 class="title">{{ item.title?.english ? item.title?.english : 'Native title: ' + item.title?.native }}</h1>
+
+    <div class="container">
+      <div>
+        <span class="title-type">Type </span>
+        <span class="color-text">{{item.type}}</span>
+      </div>
+      <div>
+        <span class="title-type">Format </span>
+        <span class="color-text">{{item.format}}</span>
+      </div>
     </div>
-    <div>
-      <span>Format: </span>
-      <span class="color-text">{{item.format}}</span>
+
+    <div class="container">
+      <div>
+        <span class="title-type">For adults </span>
+        <span class="color-text">{{getBooleanLabel(item.isAdult)}}</span>
+      </div>
+      <div>
+        <span class="title-type">Episodes </span>
+        <span class="color-text">{{item.episodes}}</span>
+      </div>
     </div>
+
     <div>
-      <span>For adults: </span>
-      <span class="color-text">{{getBooleanLabel(item.isAdult)}}</span>
-    </div>
-    <div>
-      <span>Episodes: </span>
-      <span class="color-text">{{item.episodes}}</span>
-    </div>
-    <div>
-      <span>Status: </span>
+      <span class="title-type">Status </span>
       <span class="color-text">{{item.status}}</span>
     </div>
-    <div>
-      <span>Description: </span>
-      <span class="color-text">{{item.description}}</span>
+    <div class="description">
+      <span class="title-description">Description </span>
+      <span class="text-description">{{item.description}}</span>
     </div>
   </div>
 
