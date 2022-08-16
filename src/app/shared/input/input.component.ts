@@ -34,7 +34,7 @@ export class InputComponent implements OnInit, OnDestroy {
       )
       .subscribe((value) => {
 
-        if (value.length === 0) {
+        if (value?.length === 0 || value == null) {
           this.placeholderShow = true;
         } else {
           this.placeholderShow = false;

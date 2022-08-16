@@ -32,12 +32,29 @@ export class DataService {
   ) { }
 
 
-  public getMediaList(page: number, filter: QueryMediaArgs):  Observable<ApolloQueryResult<MediaListQuery>> {
+  public getMediaList(page: number, _filter: QueryMediaArgs):  Observable<ApolloQueryResult<MediaListQuery>> {
+    const filter: QueryMediaArgs = {};
+
+    if (_filter.search) {
+      filter.search = _filter.search;
+    }
+
+    if (_filter.type) {
+      filter.type = _filter.type;
+    }
+
+    // @ts-ignore
+    if (_filter.format_in.length > 0) {
+      filter.format_in = _filter.format_in;
+    }
+
+
+
     return this.mediaListGQL.watch({
       page,
       perPage: this.perPage,
-      // search: filter.search,
-      // type: filter.type,
+      search: filter.search,
+      type: filter.type,
       format_in: filter.format_in,
     }, {fetchPolicy: "cache-first"})
       .valueChanges

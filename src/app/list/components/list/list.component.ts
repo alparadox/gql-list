@@ -27,6 +27,11 @@ export class ListComponent implements OnInit, OnDestroy {
         // takeUntil(this.destroy$),
         switchMap((queryParams: ParamMap) => {
           const currentPage = queryParams.get('page');
+          const search = queryParams.get('search');
+          const type = queryParams.get('type');
+          const format_in = queryParams.getAll('format_in');
+          // @ts-ignore
+          this.dataService.setFilter({search, type, format_in});
 
 
           if (!currentPage) {
@@ -34,6 +39,7 @@ export class ListComponent implements OnInit, OnDestroy {
             return EMPTY;
           } else {
             const filter = this.dataService.getFilter();
+            console.log('FILTER', filter)
             return this.dataService.getMediaList(+currentPage, filter);
           }
         }),

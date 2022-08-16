@@ -15,15 +15,15 @@ export class FilterComponent implements OnInit {
   formats = MediaFormat;
 
   public readonly filter = new FormGroup({
-    searchTerm: new FormControl(null),
+    search: new FormControl(null),
     type: new FormControl(null),
     format_in: new FormControl(['MANGA', 'MOVIE', 'ONE_SHOT']),
   });
 
   public MediaType = MediaType;
 
-  public get searchTerm(): FormControl {
-    return this.filter.get('searchTerm') as FormControl;
+  public get search(): FormControl {
+    return this.filter.get('search') as FormControl;
   }
 
   public get type(): FormControl {
@@ -43,20 +43,19 @@ export class FilterComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.queryParamMap.subscribe(queryParams => {
-      const searchTerm = queryParams.get('searchTerm');
+      const search = queryParams.get('search');
       const type = queryParams.get('type');
       const format_in = queryParams.getAll('format_in');
 
       this.filter.setValue({
-        searchTerm, type, format_in
+        search, type, format_in
       }, { emitEvent: true });
     });
   }
 
   public onApply(): void {
-    this.dataService.setFilter(this.filter.value);
     this.router.navigate(
       ['/list'],
-      {queryParams: {page: 1, searchTerm: this.searchTerm.value, type: this.type.value, format_in: this.formatIn.value}})
+      {queryParams: {page: 1, search: this.search.value, type: this.type.value, format_in: this.formatIn.value}})
   }
 }
